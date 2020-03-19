@@ -1,0 +1,9 @@
+run_eclipse.bat
+.project
+.settings/
+*.class
+.classpath
+target/
+*.odt
+conf_mvn.txt
+*.db
