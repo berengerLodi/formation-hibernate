@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+	<!-- Field validators -->
+	<field name="consultation.patient" >
+		<field-validator type="required">
+			<message>Vous devez saisir un patient.</message>
+		</field-validator>
+	</field>
+	<field name="consultation.date">
+		<field-validator type="required">
+			<message>Vous devez saisir une date de consultation.</message>
+		</field-validator>
+		<field-validator type="date">
+			<param name="min">31/12/2000</param>
+			<message>Vous devez saisir une date postérieure à ${min}.</message>
+		</field-validator>
+	</field>
+	<field name="consultation.lieu.ville" >
+		<field-validator type="requiredstring">
+			<message>Vous devez saisir une ville.</message>
+		</field-validator>
+		<field-validator type="regex">
+			<param name="regex">[0-9]{5}.*</param>
+			<message>Vous devez saisir au moins un code postal.</message>
+		</field-validator>
+	</field>
+	<field name="consultation.lieu.voie" >
+		<field-validator type="requiredstring">
+			<message>Vous devez saisir une voie.</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">2</param>
+			<param name="trim">true</param>
+			<message>La voie doit faire au moins ${minLength} caractères.</message>
+		</field-validator>
+	</field>
+</validators>

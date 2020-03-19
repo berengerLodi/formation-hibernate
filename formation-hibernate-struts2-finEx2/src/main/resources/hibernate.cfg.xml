@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.provider_class">fr.insee.config.hibernate.InseeConnectionProvider</property>
+		<property name="hibernate.connection.insee.poolName">formation</property>
+		<property name="dialect">fr.insee.tp.dao.H2DialectExtended</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">false</property>
+		<property name="hibernate.bytecode.use_reflection_optimizer">true</property>
+		<property name="hibernate.connection.autocommit">false</property>
+		<property name="current_session_context_class">thread</property>
+		<property name="hbm2ddl.auto">validate</property>
+		<property name="hibernate.id.new_generator_mappings">true</property>
+		
+		<mapping class="fr.insee.tp.domaine.Medecin" />
+		<mapping class="fr.insee.tp.domaine.Maladie" />
+		<mapping class="fr.insee.tp.domaine.DossierMedical" />
+		<mapping class="fr.insee.tp.domaine.Patient" />
+		<mapping class="fr.insee.tp.domaine.Medicament" />
+		<mapping class="fr.insee.tp.domaine.Acte" />
+		<mapping class="fr.insee.tp.domaine.Consultation" />
+		<mapping class="fr.insee.tp.domaine.Ordonnance" />
+
+	</session-factory>
+</hibernate-configuration>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.custom.i18n.resources" value="fr/insee/config/messages" />
+	
+	<package name="formation" extends="struts-default" namespace="/">
+	
+		<interceptors>
+			<interceptor name="hibernate" class="fr.insee.tp.interceptor.HibernateInterceptor" />
+			<interceptor name="stopwatch" class="fr.insee.tp.interceptor.StopwatchInterceptor" />
+			<interceptor-stack name="formationStack">
+				<interceptor-ref name="stopwatch" />
+				<interceptor-ref name="hibernate" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="formationStack" />
+		
+		<action name="accueil" class="fr.insee.tp.action.AccueilAction">
+			<result>/WEB-INF/jsp/accueil.jsp</result>
+		</action>
+	</package>
+	
+	<package name="medecin" extends="formation" namespace="/medecin">
+	
+		<action name="listeMedecins" class="fr.insee.tp.action.ListeMedecinsAction">
+			<result>/WEB-INF/jsp/listeMedecins.jsp</result>
+		</action>
+		
+		<action name="listeConsultations" class="fr.insee.tp.action.ListeConsultationsAction">
+			<result>/WEB-INF/jsp/listeConsultations.jsp</result>
+		</action>
+		
+		<action name="ajouterConsultation" class="fr.insee.tp.action.AjouterConsultationAction">
+			<result>/WEB-INF/jsp/ajouterConsultation.jsp</result>
+		</action>
+		
+		<action name="enregistrerConsultation" class="fr.insee.tp.action.EnregistrerConsultationAction">
+			<result name="input">/WEB-INF/jsp/ajouterConsultation.jsp</result>
+			<result type="redirectAction">
+	        	<param name="namespace">/medecin</param>
+	            <param name="actionName">listeConsultations</param>
+ 	        	<param name="medecin">%{consultation.medecin}</param>
+	        </result>
+		</action>
+	</package>
+</struts>
